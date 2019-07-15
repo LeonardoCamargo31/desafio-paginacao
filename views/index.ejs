@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>Desafio da semana 10 - Paginação</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome da empresa</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Cidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% results.data.forEach(item=>{ %>
+                    <tr>
+                        <th scope="row"><%= item.id %></th>
+                        <td><%= item.razao_social %></td>
+                        <td><%= item.endereco %></td>
+                        <td><%= item.cidade %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <nav aria-label="...">
+            <ul class="pagination">
+                <!--ou seja quando for a pagina 0, isso não aparece, quando estiver nas próximas ele aparece-->
+                <% if(results.pagination.currentPage>0){ %>
+                    <li class="page-item">
+                        <a class="page-link" href="/?page=<%= parseInt(results.pagination.currentPage)-1 %>" tabindex="-1">Anterior</a>
+                    </li>
+                <% } %>
+                <% if(results.pagination.next){ %>
+                    <li class="page-item">
+                        <a class="page-link" href="/?page=<%= parseInt(results.pagination.currentPage)+1 %>">Próxima</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
